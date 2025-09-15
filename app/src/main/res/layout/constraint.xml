@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <TextView
@@ -175,9 +176,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/titlePokemon"
         app:layout_constraintVertical_bias="0.0" />
-    <!-- National Number Section-->
+
     <TextView
-        android:id="@+id/textViewNationalNumber"
+        android:id="@+id/textViewNationalNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -210,7 +211,7 @@
         android:text="@string/textviewName"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNationalNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNationalNum" />
 
     <TextView
         android:id="@+id/textViewSpecies"
