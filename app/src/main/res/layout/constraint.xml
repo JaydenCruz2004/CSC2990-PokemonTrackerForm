@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:text="@string/hp"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="60dp"
         android:text="@string/defense"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,88 +54,94 @@
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="146dp"
-        android:layout_height="20dp"
+        android:layout_height="35dp"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="65dp"
         android:ems="10"
         android:inputType="text"
         android:text="@string/name"
+        android:textSize="9sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNationalNum" />
 
     <EditText
         android:id="@+id/editTextSpecies"
         android:layout_width="146dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginBottom="529dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="64dp"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/species"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/wild_horse_pok_mon"
+        android:textSize="9sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
     <EditText
         android:id="@+id/editTextHeight"
         android:layout_width="146dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="65dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="64dp"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/height"
+        android:text="@string/_2_2_m"
+        android:textSize="9sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButtonFemale" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupGender" />
 
     <EditText
         android:id="@+id/editTextWeight"
         android:layout_width="146dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="33dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="65dp"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/weight"
+        android:text="@string/_800_0_kg"
+        android:textSize="9sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextHeight" />
 
     <EditText
         android:id="@+id/editTextHP"
         android:layout_width="146dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="79dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="58dp"
         android:layout_marginEnd="65dp"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/edithp"
+        android:text="@string/_0"
+        android:textSize="9sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerLevel" />
 
     <EditText
         android:id="@+id/editTextAttack"
         android:layout_width="146dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="33dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="65dp"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/edittextattack"
+        android:text="@string/_0"
+        android:textSize="9sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextHP" />
 
     <EditText
         android:id="@+id/editTextDefense"
         android:layout_width="146dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="33dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="65dp"
         android:ems="10"
-        android:inputType="text"
-        android:text="@string/edittextdefense"
+        android:inputType="number"
+        android:text="@string/_0"
+        android:textSize="9sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAttack" />
 
@@ -175,30 +181,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="274dp"
-        android:layout_marginBottom="617dp"
+        android:layout_marginTop="15dp"
         android:text="@string/national_number"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subtitle" />
 
     <EditText
         android:id="@+id/editTextNationalNum"
         android:layout_width="146dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="23dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="65dp"
-        android:layout_marginBottom="614dp"
         android:ems="10"
+        android:hint="@string/_0_1010"
         android:inputType="number"
-        android:text="@string/edittextNationalNum"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/_896"
+        android:textSize="9sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewNationalNumber"
         app:layout_constraintTop_toBottomOf="@+id/subtitle" />
 
     <TextView
@@ -206,11 +206,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginTop="33dp"
         android:text="@string/textviewName"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewSpecies"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNationalNumber" />
 
@@ -219,14 +217,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="126dp"
-        android:layout_marginBottom="539dp"
+        android:layout_marginTop="40dp"
         android:lineSpacingExtra="16sp"
         android:text="@string/textspecies"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editTextSpecies"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
@@ -241,45 +235,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSpecies" />
 
-    <RadioButton
-        android:id="@+id/radioButtonFemale"
-        android:layout_width="69dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="35dp"
-        android:text="@string/female"
-        android:textSize="11sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewGender"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSpecies" />
+    <RadioGroup
+        android:id="@+id/radioGroupGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="65dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSpecies">
 
-    <RadioButton
-        android:id="@+id/radioButtonMale"
-        android:layout_width="69dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="197dp"
-        android:layout_marginTop="35dp"
-        android:text="@string/male"
-        android:textSize="11sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewGender"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSpecies" />
+        <RadioButton
+            android:id="@+id/radioButtonFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female" />
 
-    <RadioButton
-        android:id="@+id/radioButtonUnknown"
-        android:layout_width="109dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="255dp"
-        android:layout_marginTop="35dp"
-        android:text="@string/unknown"
-        android:textSize="11sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewGender"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSpecies" />
+        <RadioButton
+            android:id="@+id/radioButtonMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male" />
+
+        <RadioButton
+            android:id="@+id/radioButtonUnknown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unknown" />
+    </RadioGroup>
+
 
     <TextView
         android:id="@+id/textViewHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="36dp"
         android:text="@string/textHeight"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -300,7 +291,7 @@
         android:id="@+id/spinnerLevel"
         android:layout_width="145dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="65dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextWeight" />
@@ -310,7 +301,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:text="@string/base_stats"
         android:textSize="17sp"
         android:textStyle="bold"
@@ -336,6 +327,16 @@
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/buttonToggleLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="18dp"
+        android:text="Switch Layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
