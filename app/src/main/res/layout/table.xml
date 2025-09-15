@@ -10,29 +10,35 @@
         android:stretchColumns="1">
 
         <TableRow>
+
             <TextView
+                android:id="@+id/titlePokemon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_span="2"
                 android:gravity="center"
                 android:text="Poke - Tracker"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:textStyle="bold" />
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:layout_span="2"
                 android:gravity="center"
                 android:text="Register new catch"
-                android:textSize="16sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"/>
+                android:textSize="16sp" />
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:id="@+id/textViewNationalNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="National Number" />
@@ -45,7 +51,9 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:id="@+id/textViewName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name" />
@@ -57,7 +65,9 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:id="@+id/textViewSpecies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Species" />
@@ -69,10 +79,12 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:id="@+id/textViewGender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gender"/>
+                android:text="Gender" />
             <RadioGroup
                 android:id="@+id/radioGroupGender"
                 android:layout_width="match_parent"
@@ -97,10 +109,12 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:id="@+id/textViewHeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Height"/>
+                android:text="Height" />
             <EditText
                 android:id="@+id/editTextHeight"
                 android:layout_width="match_parent"
@@ -109,10 +123,12 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:id="@+id/textViewWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Weight"/>
+                android:text="Weight" />
             <EditText
                 android:id="@+id/editTextWeight"
                 android:layout_width="match_parent"
@@ -121,10 +137,12 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:id="@+id/textViewLevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Level"/>
+                android:text="Level" />
             <Spinner
                 android:id="@+id/spinnerLevel"
                 android:layout_width="match_parent"
@@ -132,21 +150,25 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
-                android:layout_span="2"
-                android:text="Base Stats"
-                android:textStyle="bold"
-                android:textSize="18sp"
+                android:id="@+id/textViewBaseStats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"/>
+                android:layout_marginTop="12dp"
+                android:layout_span="2"
+                android:text="Base Stats"
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:id="@+id/textViewHP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HP"/>
+                android:text="HP" />
             <EditText
                 android:id="@+id/editTextHP"
                 android:layout_width="match_parent"
@@ -156,10 +178,12 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:id="@+id/textViewAttack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Attack"/>
+                android:text="Attack" />
             <EditText
                 android:id="@+id/editTextAttack"
                 android:layout_width="match_parent"
@@ -169,10 +193,12 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:id="@+id/textViewDefense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Defense"/>
+                android:text="Defense" />
             <EditText
                 android:id="@+id/editTextDefense"
                 android:layout_width="match_parent"
