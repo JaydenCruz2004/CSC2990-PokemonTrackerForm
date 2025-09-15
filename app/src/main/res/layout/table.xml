@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#B0EFFA">
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#B0EFFA"
         android:padding="24dp"
         android:stretchColumns="1">
 
@@ -18,6 +20,7 @@
                 android:layout_span="2"
                 android:gravity="center"
                 android:text="Poke - Tracker"
+                android:textColor="#FF0000"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </TableRow>
@@ -32,6 +35,7 @@
                 android:layout_span="2"
                 android:gravity="center"
                 android:text="Register new catch"
+                android:textColor="#2196F3"
                 android:textSize="16sp" />
         </TableRow>
 
@@ -42,12 +46,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="National Number" />
+
             <EditText
                 android:id="@+id/editTextNationalNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:text="896"/>
+                android:text="896" />
         </TableRow>
 
         <TableRow>
@@ -57,11 +62,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name" />
+
             <EditText
                 android:id="@+id/editTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Glastrier"/>
+                android:text="Glastrier" />
         </TableRow>
 
         <TableRow>
@@ -71,11 +77,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Species" />
+
             <EditText
                 android:id="@+id/editTextSpecies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wild Horse Pokémon"/>
+                android:text="Wild Horse Pokémon" />
         </TableRow>
 
         <TableRow>
@@ -85,26 +92,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gender" />
+
             <RadioGroup
                 android:id="@+id/radioGroupGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <RadioButton
                     android:id="@+id/radioButtonFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Female"/>
+                    android:text="Female" />
+
                 <RadioButton
                     android:id="@+id/radioButtonMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Male"/>
+                    android:text="Male" />
+
                 <RadioButton
                     android:id="@+id/radioButtonUnknown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Unknown"/>
+                    android:text="Unknown" />
             </RadioGroup>
         </TableRow>
 
@@ -115,11 +126,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Height" />
+
             <EditText
                 android:id="@+id/editTextHeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2.2 m"/>
+                android:text="2.2 m" />
         </TableRow>
 
         <TableRow>
@@ -129,11 +141,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Weight" />
+
             <EditText
                 android:id="@+id/editTextWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="800.0 Kg"/>
+                android:text="800.0 Kg" />
         </TableRow>
 
         <TableRow>
@@ -143,10 +156,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Level" />
+
             <Spinner
                 android:id="@+id/spinnerLevel"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </TableRow>
 
         <TableRow>
@@ -169,12 +183,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HP" />
+
             <EditText
                 android:id="@+id/editTextHP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:text="0"/>
+                android:text="0" />
         </TableRow>
 
         <TableRow>
@@ -184,12 +199,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Attack" />
+
             <EditText
                 android:id="@+id/editTextAttack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:text="0"/>
+                android:text="0" />
         </TableRow>
 
         <TableRow>
@@ -199,12 +215,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Defense" />
+
             <EditText
                 android:id="@+id/editTextDefense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:text="0"/>
+                android:text="0" />
         </TableRow>
 
         <TableRow
