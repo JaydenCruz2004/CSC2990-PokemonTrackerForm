@@ -1,17 +1,17 @@
 //resources used:
-// https://www.geeksforgeeks.org/android/lambda-expressions-in-android-with-example/
-//lambda functions are cool
 // https://www.geeksforgeeks.org/android/how-to-implement-dark-night-mode-in-android-app/
 //how to implement a dark mode
+// https://nezspencer.medium.com/using-textwatchers-the-right-way-case-study-naira-textwatcher-5cd316222c6a
+// https://www.tutorialspoint.com/how-to-implement-textwatcher-in-android
 
 package com.example.csc2990_pokemontrackerform;
-
 import static com.example.csc2990_pokemontrackerform.R.id.textViewName;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -139,8 +139,53 @@ public class MainActivity extends AppCompatActivity {
         if (buttonSave != null) buttonSave.setOnClickListener(buttonListener);
         if (buttonToggleLayout != null) buttonToggleLayout.setOnClickListener(buttonListener);
         if (switchMode != null) switchMode.setOnClickListener(buttonListener);
-    }
 
+        //EC:20pts 10 for Height 10 for Weight
+        // Height to always ends with " m"
+        editTextHeight.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String text = s.toString();
+                if (!text.isEmpty() && !text.endsWith(" m")) {
+                    // remove any "m" the user tries to type
+                    text = text.replaceAll("[^0-9.]", "");
+                    editTextHeight.removeTextChangedListener(this);
+                    editTextHeight.setText(text + " m");
+                    editTextHeight.setSelection(text.length());
+                    editTextHeight.addTextChangedListener(this);
+                }
+            }
+        });
+
+        // Weight to always ends with " kg"
+        editTextWeight.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String text = s.toString();
+                if (!text.isEmpty() && !text.endsWith(" Kg")) {
+                    // remove any "kg" the user tries to type
+                    text = text.replaceAll("[^0-9.]", "");
+                    editTextWeight.removeTextChangedListener(this);
+                    editTextWeight.setText(text + " Kg");
+                    editTextWeight.setSelection(text.length());
+                    editTextWeight.addTextChangedListener(this);
+                }
+            }
+        });
+
+    }
     private final View.OnClickListener buttonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -153,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Info stored in database!", Toast.LENGTH_SHORT).show();
                     pokeballImage.setVisibility(View.VISIBLE);
 
+                    //pokeball image pop up after succesful save
                     // Hide it after 3 seconds
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -161,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
                             pokeballImage.setVisibility(View.GONE);
                         }
                     }, 3000);
+
                 } else {
                     Toast.makeText(MainActivity.this, "Errors found. Please check highlighted fields.", Toast.LENGTH_SHORT).show();
                 }
