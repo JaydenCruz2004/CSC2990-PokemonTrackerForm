@@ -11,6 +11,7 @@ import static com.example.csc2990_pokemontrackerform.R.id.textViewName;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Buttons
     private Button buttonReset, buttonSave, buttonToggleLayout;
+
+    private ImageView pokeballImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
         // Initialize Spinner
         spinnerLevel = findViewById(R.id.spinnerLevel);
 
+        pokeballImage = findViewById(R.id.pokeballImage);
+
         /* used to print out 1-50 to add to ArrayList
         for (int i = 0; i < 50; i++) {
             System.out.println("spinnerLevels.add(\"" + i + "\");");
@@ -114,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedLevel = parent.getItemAtPosition(position).toString();
                 if (!selectedLevel.equals("Choose a level")) {
-                    Toast.makeText(MainActivity.this, "You selected: " + selectedLevel, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -147,6 +151,16 @@ public class MainActivity extends AppCompatActivity {
             } else if (id == R.id.buttonSave) {
                 if (validateInputs()) {
                     Toast.makeText(MainActivity.this, "Info stored in database!", Toast.LENGTH_SHORT).show();
+                    pokeballImage.setVisibility(View.VISIBLE);
+
+                    // Hide it after 3 seconds
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            pokeballImage.setVisibility(View.GONE);
+                        }
+                    }, 3000);
                 } else {
                     Toast.makeText(MainActivity.this, "Errors found. Please check highlighted fields.", Toast.LENGTH_SHORT).show();
                 }
@@ -177,9 +191,7 @@ public class MainActivity extends AppCompatActivity {
         editTextHP.setText("0");
         editTextAttack.setText("0");
         editTextDefense.setText("0");
-
         radioGroupGender.clearCheck();
-        if (spinnerLevel != null) spinnerLevel.setSelection(0);
     }
 
 
