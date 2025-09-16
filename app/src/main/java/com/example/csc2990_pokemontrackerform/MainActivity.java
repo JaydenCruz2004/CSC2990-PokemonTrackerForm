@@ -1,6 +1,8 @@
 //resources used:
 // https://www.geeksforgeeks.org/android/lambda-expressions-in-android-with-example/
 //lambda functions are cool
+// https://www.geeksforgeeks.org/android/how-to-implement-dark-night-mode-in-android-app/
+//how to implement a dark mode
 
 package com.example.csc2990_pokemontrackerform;
 
@@ -10,9 +12,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.*;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton radioButtonMale, radioButtonFemale, radioButtonUnknown;
     private Spinner spinnerLevel;
 
+    private Switch switchMode;
+
     // Buttons
     private Button buttonReset, buttonSave, buttonToggleLayout;
 
@@ -37,16 +47,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Load layout based on layoutIndex
-        switch (layoutIndex) {
-            case 0:
-                setContentView(R.layout.linear);
-                break;
-            case 1:
-                setContentView(R.layout.table);
-                break;
-            case 2:
-                setContentView(R.layout.constraint);
-                break;
+        if (layoutIndex == 0) {
+            setContentView(R.layout.linear);
+        } else if (layoutIndex == 1) {
+            setContentView(R.layout.table);
+        } else if (layoutIndex == 2) {
+            setContentView(R.layout.constraint);
         }
 
         // Connect views to find by id
@@ -69,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         textViewHP = findViewById(R.id.textViewHP);
         textViewAttack = findViewById(R.id.textViewAttack);
         textViewDefense = findViewById(R.id.textViewDefense);
-        
+
 
         radioGroupGender = findViewById(R.id.radioGroupGender);
 
@@ -77,40 +83,88 @@ public class MainActivity extends AppCompatActivity {
         radioButtonMale = findViewById(R.id.radioButtonMale);
         radioButtonUnknown = findViewById(R.id.radioButtonUnknown);
 
-
-
+        // Initialize Spinner
         spinnerLevel = findViewById(R.id.spinnerLevel);
+
+        /* used to print out 1-50 to add to ArrayList
+        for (int i = 0; i < 50; i++) {
+            System.out.println("spinnerLevels.add(\"" + i + "\");");
+        }
+        **/
+        //had it print each line but figured you can just put the loop below
+
+
+        // Add items to Spinner
+        List<String> spinnerLevels = new ArrayList<>();
+        spinnerLevels.add("N/A");
+        for (int i = 1; i < 51; i++) {
+            spinnerLevels.add(String.valueOf(i));
+        }
+
+
+        // Create adapter and set to Spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, spinnerLevels);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerLevel.setAdapter(adapter);
+
+        // Spinner Listener
+        spinnerLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedLevel = parent.getItemAtPosition(position).toString();
+                if (!selectedLevel.equals("Choose a level")) {
+                    Toast.makeText(MainActivity.this, "You selected: " + selectedLevel, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
 
         buttonReset = findViewById(R.id.buttonReset);
         buttonSave = findViewById(R.id.buttonSave);
         buttonToggleLayout = findViewById(R.id.buttonToggleLayout);
 
-        // Reset button
-        if (buttonReset != null) {
-            buttonReset.setOnClickListener(v -> resetForm());
-        }
+        switchMode = findViewById(R.id.switchMode);
 
-        // Save button (validate inputs)
-        if (buttonSave != null) {
-            buttonSave.setOnClickListener(v -> {
+        // Assign listener to buttons
+        if (buttonReset != null) buttonReset.setOnClickListener(buttonListener);
+        if (buttonSave != null) buttonSave.setOnClickListener(buttonListener);
+        if (buttonToggleLayout != null) buttonToggleLayout.setOnClickListener(buttonListener);
+        if (switchMode != null) switchMode.setOnClickListener(buttonListener);
+    }
+
+    private final View.OnClickListener buttonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int id = v.getId();
+
+            if (id == R.id.buttonReset) {
+                resetForm();
+            } else if (id == R.id.buttonSave) {
                 if (validateInputs()) {
-                    Toast.makeText(this, "Info stored in database!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Info stored in database!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Errors found. Please check highlighted fields.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Errors found. Please check highlighted fields.", Toast.LENGTH_SHORT).show();
                 }
-            });
-        }
-
-        //Extra Credit: toggle layout button
-        if (buttonToggleLayout != null) {
-            buttonToggleLayout.setOnClickListener(v -> {
+            } else if (id == R.id.buttonToggleLayout) {
                 layoutIndex = (layoutIndex + 1) % 3;
                 Intent intent = getIntent();
                 finish();
                 startActivity(intent);
-            });
+            } else if (id == R.id.switchMode) {
+                int currentMode = AppCompatDelegate.getDefaultNightMode();
+                if (currentMode == AppCompatDelegate.MODE_NIGHT_YES) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+            }
         }
-    }
+    };
 
     // Reset form to defaults
     private void resetForm() {
@@ -119,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
         editTextSpecies.setText("Wild Horse Pokemon");
         editTextHeight.setText("2.2 m");
         editTextWeight.setText("800.0 Kg");
+        spinnerLevel.setSelection(0);
         editTextHP.setText("0");
         editTextAttack.setText("0");
         editTextDefense.setText("0");
@@ -126,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         radioGroupGender.clearCheck();
         if (spinnerLevel != null) spinnerLevel.setSelection(0);
     }
+
 
     // Validate inputs
     private boolean validateInputs() {
@@ -240,6 +296,20 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             textViewWeight.setTextColor(Color.RED);
+            valid = false;
+        }
+
+        // Level
+        try {
+            if (spinnerLevel.getSelectedItemPosition() == 0) {
+                textViewLevel.setTextColor(Color.RED);
+                Toast.makeText(this, "Must Select a Level 1 - 50", Toast.LENGTH_SHORT).show();
+                valid = false;
+            } else {
+                textViewLevel.setTextColor(Color.BLACK);
+            }
+        } catch (Exception e) {
+            textViewLevel.setTextColor(Color.RED);
             valid = false;
         }
 

@@ -1,8 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Light Theme -->
     <style name="Base.Theme.CSC2990PokemonTrackerForm" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Light mode background
+        <item name="android:windowBackground">@android:color/white</item>
+        -->
+        <item name="android:windowBackground">#E8FAFF</item>
+
+        <!-- Default text color -->
+        <item name="android:textColor">@android:color/black</item>
+        <!-- Button text color -->
+        <item name="android:textColorPrimary">@android:color/black</item>
     </style>
 
     <style name="Theme.CSC2990PokemonTrackerForm" parent="Base.Theme.CSC2990PokemonTrackerForm" />

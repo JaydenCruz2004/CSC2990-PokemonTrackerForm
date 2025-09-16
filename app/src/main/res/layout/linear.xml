@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#B1F2FD"
+        android:background="?android:windowBackground"
         android:orientation="vertical"
         android:padding="24dp">
 
@@ -213,6 +213,12 @@
                 android:text="Switch Layout" />
 
         </LinearLayout>
+
+        <Switch
+            android:id="@+id/switchMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mode"/>
 
     </LinearLayout>
 </ScrollView>
