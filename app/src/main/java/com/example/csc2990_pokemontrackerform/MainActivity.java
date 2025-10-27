@@ -57,11 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Load layout based on layoutIndex
         if (layoutIndex == 0) {
-            setContentView(R.layout.linear);
+            setContentView(R.layout.constraint);
         } else if (layoutIndex == 1) {
             setContentView(R.layout.table);
         } else if (layoutIndex == 2) {
-            setContentView(R.layout.constraint);
+            setContentView(R.layout.linear);
         }
 
         // Connect views to find by id
