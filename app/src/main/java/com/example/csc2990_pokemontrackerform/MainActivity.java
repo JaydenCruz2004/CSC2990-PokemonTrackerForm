@@ -5,7 +5,9 @@
 // https://www.tutorialspoint.com/how-to-implement-textwatcher-in-android
 //com.example.csc2990_pokemontrackerform
 package com.example.csc2990_pokemontrackerform;
+
 import static com.example.csc2990_pokemontrackerform.R.id.textViewName;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,6 +21,10 @@ import android.widget.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
+import android.content.ContentValues;
+import android.net.Uri;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -144,10 +150,12 @@ public class MainActivity extends AppCompatActivity {
         // Height to always ends with " m"
         editTextHeight.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -166,10 +174,12 @@ public class MainActivity extends AppCompatActivity {
         // Weight to always ends with " kg"
         editTextWeight.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -186,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     private final View.OnClickListener buttonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -195,18 +206,55 @@ public class MainActivity extends AppCompatActivity {
                 resetForm();
             } else if (id == R.id.buttonSave) {
                 if (validateInputs()) {
-                    Toast.makeText(MainActivity.this, "Info stored in database!", Toast.LENGTH_SHORT).show();
-                    pokeballImage.setVisibility(View.VISIBLE);
 
-                    //pokeball image pop up after succesful save
-                    // Hide it after 3 seconds
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            pokeballImage.setVisibility(View.GONE);
-                        }
-                    }, 3000);
+                    // --- Collect all form data ---
+                    String nationalNum = editTextNationalNum.getText().toString().trim();
+                    String name = editTextName.getText().toString().trim();
+                    String species = editTextSpecies.getText().toString().trim();
+
+                    int selectedGenderId = radioGroupGender.getCheckedRadioButtonId();
+                    String gender = "";
+                    if (selectedGenderId == R.id.radioButtonMale) gender = "Male";
+                    else if (selectedGenderId == R.id.radioButtonFemale) gender = "Female";
+                    else if (selectedGenderId == R.id.radioButtonUnknown) gender = "Unknown";
+
+                    String height = editTextHeight.getText().toString().replace("m", "").trim();
+                    String weight = editTextWeight.getText().toString().replace("Kg", "").trim();
+                    String level = spinnerLevel.getSelectedItem().toString();
+                    String hp = editTextHP.getText().toString().trim();
+                    String attack = editTextAttack.getText().toString().trim();
+                    String defense = editTextDefense.getText().toString().trim();
+
+                    // --- Build ContentValues for the database ---
+                    ContentValues values = new ContentValues();
+                    values.put(MyPokeContentProvider.COL_NATNUM, nationalNum);
+                    values.put(MyPokeContentProvider.COL_NAME, name);
+                    values.put(MyPokeContentProvider.COL_SPEC, species);
+                    values.put(MyPokeContentProvider.COL_GENDER, gender);
+                    values.put(MyPokeContentProvider.COL_HEIGHT, height);
+                    values.put(MyPokeContentProvider.COL_WEIGHT, weight);
+                    values.put(MyPokeContentProvider.COL_LEVEL, level);
+                    values.put(MyPokeContentProvider.COL_HP, hp);
+                    values.put(MyPokeContentProvider.COL_ATTACK, attack);
+                    values.put(MyPokeContentProvider.COL_DEFENSE, defense);
+
+                    Uri newUri = getContentResolver().insert(MyPokeContentProvider.CONTENT_URI, values);
+
+                    if (newUri != null) {
+                        Toast.makeText(MainActivity.this, "Pokémon saved successfully!", Toast.LENGTH_SHORT).show();
+                        pokeballImage.setVisibility(View.VISIBLE);
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                pokeballImage.setVisibility(View.GONE);
+                            }
+                        }, 3000);
+
+                    } else {
+                        Toast.makeText(MainActivity.this, "Duplicate entry — Pokémon not saved.", Toast.LENGTH_SHORT).show();
+                    }
 
                 } else {
                     Toast.makeText(MainActivity.this, "Errors found. Please check highlighted fields.", Toast.LENGTH_SHORT).show();

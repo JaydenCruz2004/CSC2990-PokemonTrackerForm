@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
 public class MyPokeContentProvider extends ContentProvider {
-    public static final String TABLE_NAME ="PokeTable";
+    public static final String TABLE_NAME = "PokeTable";
     public static final String DB_NAME = "PokeDB";
     public static final String COL_NATNUM = "NATIONALNUM";
     public static final String COL_NAME = "NAME";
@@ -26,9 +26,10 @@ public class MyPokeContentProvider extends ContentProvider {
     public static final Uri CONTENT_URI = Uri.parse("content://com.example.csc2990_pokemontrackerform");
 
     SQLiteOpenHelper mHelper;
-    public final class MainDatabaseHelper extends SQLiteOpenHelper{
-        public MainDatabaseHelper(Context context){
-            super(context,DB_NAME,null,1);
+
+    public final class MainDatabaseHelper extends SQLiteOpenHelper {
+        public MainDatabaseHelper(Context context) {
+            super(context, DB_NAME, null, 1);
         }
 
 
@@ -76,8 +77,10 @@ public class MyPokeContentProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // Implement this to handle requests to delete one or more rows.
-        throw new UnsupportedOperationException("Not yet implemented");
+        SQLiteDatabase db = mHelper.getWritableDatabase();
+        int rows = db.delete(TABLE_NAME, selection, selectionArgs);
+        getContext().getContentResolver().notifyChange(uri, null);
+        return rows;
     }
 
     @Override
@@ -89,21 +92,54 @@ public class MyPokeContentProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        // TODO: Implement this to handle requests to insert a new row.
-        throw new UnsupportedOperationException("Not yet implemented");
+        String nationalNum = values.getAsString(COL_NATNUM);
+        String name = values.getAsString(COL_NAME);
+        String species = values.getAsString(COL_SPEC);
+        String gender = values.getAsString(COL_GENDER);
+        String height = values.getAsString(COL_HEIGHT);
+        String weight = values.getAsString(COL_WEIGHT);
+        String level = values.getAsString(COL_LEVEL);
+        String hp = values.getAsString(COL_HP);
+        String attack = values.getAsString(COL_ATTACK);
+        String defense = values.getAsString(COL_DEFENSE);
+
+        String[] required = {
+                COL_NATNUM,
+                COL_NAME,
+                COL_SPEC,
+                COL_GENDER,
+                COL_HEIGHT,
+                COL_WEIGHT,
+                COL_LEVEL,
+                COL_HP,
+                COL_ATTACK,
+                COL_DEFENSE
+        };
+
+        for (String col : required) {
+            String val = values.getAsString(col);
+            if (val == null || val.trim().isEmpty()) {
+                throw new IllegalArgumentException("Missing or empty value for: " + col);
+            }
+        }
+
+
+        long id = mHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+        return Uri.withAppendedPath(CONTENT_URI, "" + id);
+
     }
 
     @Override
     public boolean onCreate() {
-        // TODO: Implement this to initialize your content provider on startup.
-        return false;
+        mHelper = new MainDatabaseHelper(getContext());
+        return true;
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        // TODO: Implement this to handle query requests from clients.
-        throw new UnsupportedOperationException("Not yet implemented");
+        Cursor c = mHelper.getReadableDatabase().query(TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
+        return c;
     }
 
     @Override
