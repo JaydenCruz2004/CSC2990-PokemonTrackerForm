@@ -3,7 +3,7 @@
 //how to implement a dark mode
 // https://nezspencer.medium.com/using-textwatchers-the-right-way-case-study-naira-textwatcher-5cd316222c6a
 // https://www.tutorialspoint.com/how-to-implement-textwatcher-in-android
-
+//com.example.csc2990_pokemontrackerform
 package com.example.csc2990_pokemontrackerform;
 import static com.example.csc2990_pokemontrackerform.R.id.textViewName;
 import android.content.Intent;
