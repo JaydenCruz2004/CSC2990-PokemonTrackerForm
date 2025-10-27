@@ -43,6 +43,33 @@ public class MyPokeContentProvider extends ContentProvider {
         }
     }
 
+    public static final String SQL_CREATE =
+            "CREATE TABLE " + TABLE_NAME + " (" +
+                    "_ID INTEGER PRIMARY KEY, " +
+                    COL_NATNUM + " INTEGER NOT NULL, " +
+                    COL_NAME + " TEXT NOT NULL, " +
+                    COL_SPEC + " TEXT NOT NULL, " +
+                    COL_GENDER + " TEXT NOT NULL, " +
+                    COL_HEIGHT + " REAL NOT NULL, " +
+                    COL_WEIGHT + " REAL NOT NULL, " +
+                    COL_LEVEL + " INTEGER NOT NULL, " +
+                    COL_HP + " INTEGER NOT NULL, " +
+                    COL_ATTACK + " INTEGER NOT NULL, " +
+                    COL_DEFENSE + " INTEGER NOT NULL, " +
+                    // prevent exact duplicates
+                    "UNIQUE (" +
+                    COL_NATNUM + ", " +
+                    COL_NAME + ", " +
+                    COL_SPEC + ", " +
+                    COL_GENDER + ", " +
+                    COL_HEIGHT + ", " +
+                    COL_WEIGHT + ", " +
+                    COL_LEVEL + ", " +
+                    COL_HP + ", " +
+                    COL_ATTACK + ", " +
+                    COL_DEFENSE +
+                    ") ON CONFLICT IGNORE" +
+                    ");";
 
     public MyPokeContentProvider() {
     }
