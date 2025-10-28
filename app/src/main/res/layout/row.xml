@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/rowNatNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rownatnum"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/rowName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rowname"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/rowType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/type"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray" />
+</LinearLayout>

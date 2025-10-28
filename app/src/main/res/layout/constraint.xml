@@ -362,10 +362,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
-
-
-
+    <Button
+        android:id="@+id/buttonDatabase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginBottom="1dp"
+        android:text="Database"
+        app:layout_constraintBottom_toTopOf="@+id/buttonToggleLayout"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

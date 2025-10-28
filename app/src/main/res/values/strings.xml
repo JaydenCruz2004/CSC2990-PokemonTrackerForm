@@ -37,4 +37,7 @@
     <string name="_2_2_m">2.2 m</string>
     <string name="_800_0_kg">800.0 Kg</string>
     <string name="_0">0</string>
+    <string name="rowname">rowName</string>
+    <string name="type">Type</string>
+    <string name="rownatnum">rowNatNum</string>
 </resources>
