@@ -11,21 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CSC2990PokemonTrackerForm">
+
         <provider
             android:name=".MyPokeContentProvider"
             android:authorities="com.example.csc2990_pokemontrackerform"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true" />
 
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".DBListActivity" android:exported="false" />
+
     </application>
 
 </manifest>
