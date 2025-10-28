@@ -6,7 +6,6 @@
 //com.example.csc2990_pokemontrackerform
 package com.example.csc2990_pokemontrackerform;
 
-import static com.example.csc2990_pokemontrackerform.R.id.textViewName;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,8 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.Display;
+
 import android.view.View;
 import android.widget.*;
 
@@ -23,7 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.ContentValues;
-import android.net.Uri;
+import android.database.Cursor;
 
 
 import java.util.ArrayList;
@@ -47,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private Switch switchMode;
 
     // Buttons
-    private Button buttonReset, buttonSave, buttonToggleLayout;
+    private Button buttonReset, buttonSave, buttonToggleLayout, buttonDatabase;
+
 
     private ImageView pokeballImage;
 
@@ -91,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         radioButtonFemale = findViewById(R.id.radioButtonFemale);
         radioButtonMale = findViewById(R.id.radioButtonMale);
         radioButtonUnknown = findViewById(R.id.radioButtonUnknown);
+
 
         // Initialize Spinner
         spinnerLevel = findViewById(R.id.spinnerLevel);
@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
         buttonReset = findViewById(R.id.buttonReset);
         buttonSave = findViewById(R.id.buttonSave);
         buttonToggleLayout = findViewById(R.id.buttonToggleLayout);
+        buttonDatabase = findViewById(R.id.buttonDatabase);
 
         switchMode = findViewById(R.id.switchMode);
 
@@ -145,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         if (buttonSave != null) buttonSave.setOnClickListener(buttonListener);
         if (buttonToggleLayout != null) buttonToggleLayout.setOnClickListener(buttonListener);
         if (switchMode != null) switchMode.setOnClickListener(buttonListener);
+        if(buttonDatabase != null) buttonDatabase.setOnClickListener(dbButton);
 
         //EC:20pts 10 for Height 10 for Weight
         // Height to always ends with " m"
@@ -197,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private final View.OnClickListener buttonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -225,7 +228,6 @@ public class MainActivity extends AppCompatActivity {
                     String attack = editTextAttack.getText().toString().trim();
                     String defense = editTextDefense.getText().toString().trim();
 
-                    // --- Build ContentValues for the database ---
                     ContentValues values = new ContentValues();
                     values.put(MyPokeContentProvider.COL_NATNUM, nationalNum);
                     values.put(MyPokeContentProvider.COL_NAME, name);
@@ -238,9 +240,28 @@ public class MainActivity extends AppCompatActivity {
                     values.put(MyPokeContentProvider.COL_ATTACK, attack);
                     values.put(MyPokeContentProvider.COL_DEFENSE, defense);
 
-                    Uri newUri = getContentResolver().insert(MyPokeContentProvider.CONTENT_URI, values);
+                    getContentResolver().insert(MyPokeContentProvider.CONTENT_URI,values);
 
-                    if (newUri != null) {
+                    Cursor c = getContentResolver().query(MyPokeContentProvider.CONTENT_URI,
+                            null, null, null, null);
+
+                    if (c != null) {
+                        c.moveToFirst();
+                        if(c.getCount() > 0){
+                            while(c.isAfterLast() == false){
+                                String nationalNum0 = c.getString(1);
+                                String name0 = c.getString(2);
+                                String species0 = c.getString(3);
+                                String gender0 = c.getString(4);
+                                String height0 = c.getString(5);
+                                String weight0 = c.getString(6);
+                                String level0 = c.getString(7);
+                                String hp0 = c.getString(8);
+                                String attack0 = c.getString(9);
+                                String defense0 = c.getString(10);
+                                c.moveToNext();
+                            }
+                        }
                         Toast.makeText(MainActivity.this, "Pokémon saved successfully!", Toast.LENGTH_SHORT).show();
                         pokeballImage.setVisibility(View.VISIBLE);
 
@@ -272,6 +293,14 @@ public class MainActivity extends AppCompatActivity {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }
             }
+        }
+    };
+
+    private final View.OnClickListener dbButton = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, DBListActivity.class);
+            startActivity(intent);
         }
     };
 
