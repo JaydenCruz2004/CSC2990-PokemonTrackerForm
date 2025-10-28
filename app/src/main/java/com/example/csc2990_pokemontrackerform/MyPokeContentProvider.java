@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
+
 public class MyPokeContentProvider extends ContentProvider {
     public static final String TABLE_NAME = "PokeTable";
     public static final String DB_NAME = "PokeDB";
@@ -23,9 +25,10 @@ public class MyPokeContentProvider extends ContentProvider {
     public static final String COL_ATTACK = "ATTACK";
     public static final String COL_DEFENSE = "DEFENSE";
 
-    public static final Uri CONTENT_URI = Uri.parse("content://com.example.csc2990_pokemontrackerform");
+    public static final Uri CONTENT_URI =
+            Uri.parse("content://com.example.csc2990_pokemontrackerform");
 
-    SQLiteOpenHelper mHelper;
+    MainDatabaseHelper mHelper;
 
     public final class MainDatabaseHelper extends SQLiteOpenHelper {
         public MainDatabaseHelper(Context context) {
@@ -35,7 +38,7 @@ public class MyPokeContentProvider extends ContentProvider {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-
+            db.execSQL(SQL_CREATE);
         }
 
         @Override
@@ -46,7 +49,7 @@ public class MyPokeContentProvider extends ContentProvider {
 
     public static final String SQL_CREATE =
             "CREATE TABLE " + TABLE_NAME + " (" +
-                    "_ID INTEGER PRIMARY KEY, " +
+                    "_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COL_NATNUM + " INTEGER NOT NULL, " +
                     COL_NAME + " TEXT NOT NULL, " +
                     COL_SPEC + " TEXT NOT NULL, " +
@@ -72,6 +75,7 @@ public class MyPokeContentProvider extends ContentProvider {
                     ") ON CONFLICT IGNORE" +
                     ");";
 
+
     public MyPokeContentProvider() {
     }
 
@@ -91,7 +95,7 @@ public class MyPokeContentProvider extends ContentProvider {
     }
 
     @Override
-    public Uri insert(Uri uri, ContentValues values) {
+    public Uri insert(@NonNull Uri uri, ContentValues values) {
         String nationalNum = values.getAsString(COL_NATNUM);
         String name = values.getAsString(COL_NAME);
         String species = values.getAsString(COL_SPEC);
@@ -124,8 +128,8 @@ public class MyPokeContentProvider extends ContentProvider {
         }
 
 
-        long id = mHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
-        return Uri.withAppendedPath(CONTENT_URI, "" + id);
+        mHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+        return uri;
 
     }
 
@@ -138,9 +142,10 @@ public class MyPokeContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        Cursor c = mHelper.getReadableDatabase().query(TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
-        return c;
+
+        return mHelper.getReadableDatabase().query(TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
     }
+
 
     @Override
     public int update(Uri uri, ContentValues values, String selection,
