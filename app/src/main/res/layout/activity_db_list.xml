@@ -16,7 +16,7 @@
         android:id="@+id/backButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Back"
+        android:text="@string/back"
         android:backgroundTint="@android:color/holo_blue_light"
         android:textColor="@android:color/white"
         android:textStyle="bold"

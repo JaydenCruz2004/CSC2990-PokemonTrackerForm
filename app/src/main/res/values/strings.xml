@@ -40,4 +40,6 @@
     <string name="rowname">rowName</string>
     <string name="type">Type</string>
     <string name="rownatnum">rowNatNum</string>
+    <string name="sort_by_national_number_asc">Sort by National Number (ASC)</string>
+    <string name="back">Back</string>
 </resources>

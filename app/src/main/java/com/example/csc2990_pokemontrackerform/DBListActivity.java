@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DBListActivity extends AppCompatActivity {
     private SimpleCursorAdapter adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +92,7 @@ public class DBListActivity extends AppCompatActivity {
         registerForContextMenu(listView);
     }
 
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -114,7 +116,7 @@ public class DBListActivity extends AppCompatActivity {
             );
 
             if (rowsDeleted > 0) {
-                Toast.makeText(this, "Pokémon deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Pokémon deleted!", Toast.LENGTH_SHORT).show();
                 Cursor newCursor = getContentResolver().query(
                         MyPokeContentProvider.CONTENT_URI,
                         null,
