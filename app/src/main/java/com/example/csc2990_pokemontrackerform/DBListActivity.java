@@ -69,7 +69,7 @@ public class DBListActivity extends AppCompatActivity {
 
         adapter = new SimpleCursorAdapter(
                 this,
-                R.layout.row, // Use row.xml for each list item
+                R.layout.row,
                 cursor,
                 columns,
                 views,
@@ -124,7 +124,7 @@ public class DBListActivity extends AppCompatActivity {
                 );
                 adapter.changeCursor(newCursor);
             } else {
-                Toast.makeText(this, "Failed to delete Pokémon", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Failed to delete Pokémon!", Toast.LENGTH_SHORT).show();
             }
             return true;
         }
